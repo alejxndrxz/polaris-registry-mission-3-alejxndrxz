@@ -1,23 +1,341 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 30px;
+/* === RESET Y BASE === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0B0C1E;
+      color: #e0e0f0;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4, h5, .navbar-brand, .btn {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    /* === VARIABLES (paleta de colores) === */
+    :root {
+      --espacio-profundo: #0B0C1E;
+      --nebulosa: #1A1F3A;
+      --noche-violacea: #2D2F5E;
+      --neon-azul: #4A9FF5;
+      --cian-cosmico: #6CD4FF;
+      --brillo-estelar: #FFD966;
+      --fondo-vidrio: rgba(10, 15, 30, 0.4);
+      --borde-vidrio: rgba(255, 255, 255, 0.08);
+    }
+
+    .texto-degradado {
+      background: linear-gradient(135deg, #FFD966, #6CD4FF, #B794F4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* === BARRA DE NAVEGACIÓN === */
+    .navbar-vidrio {
+      background: rgba(11, 12, 30, 0.3);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--borde-vidrio);
+    }
+    .navbar-vidrio .navbar-brand,
+    .navbar-vidrio .nav-link {
+      color: white !important;
+      transition: color 0.2s;
+    }
+    .navbar-vidrio .nav-link:hover {
+      color: var(--cian-cosmico) !important;
+      text-shadow: 0 0 8px var(--neon-azul);
+    }
+
+    /* === BOTONES PERSONALIZADOS === */
+    .boton-neon {
+      border-radius: 50px;
+      padding: 0.6rem 2rem;
+      font-weight: 500;
+      border: 1px solid rgba(106, 212, 255, 0.5);
+      background: rgba(10, 20, 40, 0.2);
+      backdrop-filter: blur(4px);
+      color: white;
+      transition: 0.2s;
+    }
+    .boton-neon:hover {
+      background: var(--neon-azul);
+      border-color: var(--neon-azul);
+      color: #0B0C1E;
+      box-shadow: 0 0 25px var(--neon-azul);
+      transform: translateY(-2px);
+    }
+    .boton-contorno-neon {
+      border-radius: 50px;
+      border: 1px solid var(--brillo-estelar);
+      color: var(--brillo-estelar);
+      background: transparent;
+    }
+    .boton-contorno-neon:hover {
+      background: var(--brillo-estelar);
+      border-color: var(--brillo-estelar);
+      color: #0B0C1E;
+      box-shadow: 0 0 25px var(--brillo-estelar);
+    }
+
+    /* === TARJETAS DE VIDRIO (glassmorphism) === */
+    .tarjeta-vidrio {
+      background: var(--fondo-vidrio);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--borde-vidrio);
+      border-radius: 28px;
+      transition: transform 0.3s ease, border-color 0.2s;
+      overflow: hidden;
+      color: #f0f0ff;
+    }
+    .tarjeta-vidrio:hover {
+      transform: translateY(-8px);
+      border-color: rgba(106, 212, 255, 0.3);
+    }
+
+    /* === INSIGNIAS DE PROYECTOS === */
+    .insignia-proyecto {
+      background: rgba(45, 47, 94, 0.7);
+      backdrop-filter: blur(4px);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border-left: 3px solid var(--neon-azul);
+      color: #d0daff;
+    }
+
+    /* === SECCIONES === */
+    section {
+      scroll-margin-top: 70px;
+      padding: 5rem 0;
+      position: relative;
+    }
+
+    /* === HERO === */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 0;
+      background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      background-attachment: fixed;
+    }
+    .hero-capa {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 20% 30%, rgba(11,12,30,0.65) 0%, rgba(10,15,40,0.85) 100%);
+    }
+
+    /* === CÍRCULO DE LA DRA. MARTÍNEZ (espacio para logo) === */
+    .circulo-logo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #1A1F3A, #2D2F5E);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      border: 2px solid var(--cian-cosmico);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 1.4rem;
+      text-align: center;
+      color: white;
+    }
+    /* Espacio para tu logo futuro */
+    .logo-placeholder {
+      font-size: 1rem;
+      opacity: 0.7;
+    }
+
+    /* === TARJETAS DE MIEMBROS (sobre fondo de POLARIS) === */
+    .tarjeta-miembro {
+      background: rgba(10, 15, 25, 0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      padding: 1.8rem 1rem;
+      text-align: center;
+      transition: 0.2s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+    .tarjeta-miembro:hover {
+      border-color: rgba(160, 190, 255, 0.4);
+      background: rgba(20, 25, 40, 0.75);
+      transform: translateY(-5px);
+    }
+    .img-miembro {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 240, 0.4);
+      margin: 0 auto 1rem;
+    }
+    .nombre-miembro {
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+      color: #ffffff;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+    .proyectos-miembro {
+      color: #d0dcff;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    .frase-miembro {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: #ffffff;
+      background: rgba(0, 10, 30, 0.5);
+      backdrop-filter: blur(4px);
+      padding: 0.5rem;
+      border-radius: 20px;
+      margin: 0.5rem 0;
+      border-left: 2px solid var(--neon-azul);
+    }
+    .anio-miembro {
+      font-size: 0.8rem;
+      color: #aab9e0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 20px;
+      margin-top: 0.5rem;
+    }
+
+    /* === IMAGENES DE TARJETAS DE PROYECTOS === */
+    .img-proyecto {
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 2px solid var(--neon-azul);
+    }
+    .imagen-circular {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
-header {
-    margin-bottom: 20px;
-}
+    /* === SECCIÓN MIEMBROS CON FONDO DE LA ESTRELLA POLAR === */
+    .seccion-polaris {
+      background-image: url('https://images.unsplash.com/photo-1464802686167-b939a6910659?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80'); /* Imagen más enfocada en una estrella brillante */
+      background-size: cover;
+      background-position: center 40%;
+      background-attachment: fixed;
+      position: relative;
+      padding: 5rem 0;
+      border-top: 1px solid rgba(106, 212, 255, 0.3);
+      border-bottom: 1px solid rgba(106, 212, 255, 0.3);
+    }
+    .capa-polaris {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 40%, rgba(0, 5, 15, 0.5) 0%, rgba(0, 5, 20, 0.7) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .seccion-polaris .container {
+      position: relative;
+      z-index: 2;
+    }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-}
+    /* === CARRUSEL: FLECHAS MÁS ABIERTAS === */
+    .carrusel-miembros .carousel-control-prev {
+      left: -5%;
+    }
+    .carrusel-miembros .carousel-control-next {
+      right: -5%;
+    }
+    .carrusel-miembros .carousel-control-prev-icon,
+    .carrusel-miembros .carousel-control-next-icon {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      padding: 1.5rem;
+      background-size: 60% 60%;
+      border: 1px solid rgba(255,255,255,0.3);
+      width: 3rem;
+      height: 3rem;
+    }
+    @media (max-width: 768px) {
+      .carrusel-miembros .carousel-control-prev { left: 0; }
+      .carrusel-miembros .carousel-control-next { right: 0; }
+    }
 
-nav li {
-    display: inline;
-    margin-right: 15px;
-}
+    /* === NUEVO: BOTÓN DE ACCESO ANTICIPADO (lindo para miembros) === */
+    .acceso-anticipado {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border: 1px dashed var(--brillo-estelar);
+      border-radius: 60px;
+      padding: 0.8rem 2rem;
+      display: inline-block;
+      color: var(--brillo-estelar);
+      font-weight: 500;
+      transition: 0.2s;
+      text-decoration: none;
+    }
+    .acceso-anticipado:hover {
+      background: var(--brillo-estelar);
+      color: #0B0C1E;
+      border-style: solid;
+    }
 
-footer {
-    margin-top: 40px;
-    font-size: 14px;
-}
+    /* === CTA MEJORADO (Únete a la exploración) === */
+    .cta-mejorado {
+      background: linear-gradient(145deg, #0f1a2f, #1a2340);
+      border-top: 2px solid var(--neon-azul);
+      border-bottom: 2px solid var(--neon-azul);
+      box-shadow: inset 0 0 50px rgba(74, 159, 245, 0.2);
+    }
+    .tarjeta-cta {
+      background: rgba(10, 15, 30, 0.5);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 40px;
+      padding: 3rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .texto-resaltado {
+      color: var(--brillo-estelar);
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+
+    /* === PIE DE PÁGINA === */
+    footer {
+      background: #070814;
+      border-top: 1px solid #2D2F5E;
+    }
+
+    hr {
+      border-color: #2D2F5E;
+    }
+
+    /* === UTILIDADES === */
+    .borde-inferior-info {
+      border-bottom: 3px solid var(--neon-azul);
+    }
